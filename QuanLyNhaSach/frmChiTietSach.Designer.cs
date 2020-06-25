@@ -1,6 +1,6 @@
 ﻿namespace QuanLyNhaSach
 {
-    partial class ChiTietSach
+    partial class frmChiTietSach
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtTheLoai = new System.Windows.Forms.TextBox();
             this.txtNamSanXuat = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,17 +43,18 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtTacGia = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTenSach = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtMaSach = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.pbxSach = new System.Windows.Forms.PictureBox();
+            this.lbTuaSach = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxSach)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.txtTheLoai);
             this.groupBox1.Controls.Add(this.txtNamSanXuat);
             this.groupBox1.Controls.Add(this.label1);
@@ -69,53 +69,42 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtTacGia);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtTenSach);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtMaSach);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(28, 36);
+            this.groupBox1.Location = new System.Drawing.Point(458, 65);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(661, 386);
+            this.groupBox1.Size = new System.Drawing.Size(661, 598);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết sách";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(407, 150);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(247, 206);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // txtTheLoai
             // 
             this.txtTheLoai.BackColor = System.Drawing.SystemColors.Window;
             this.txtTheLoai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTheLoai.Location = new System.Drawing.Point(141, 150);
+            this.txtTheLoai.Location = new System.Drawing.Point(141, 123);
             this.txtTheLoai.Margin = new System.Windows.Forms.Padding(4);
             this.txtTheLoai.Name = "txtTheLoai";
-            this.txtTheLoai.Size = new System.Drawing.Size(239, 26);
+            this.txtTheLoai.Size = new System.Drawing.Size(509, 26);
             this.txtTheLoai.TabIndex = 4;
             // 
             // txtNamSanXuat
             // 
             this.txtNamSanXuat.BackColor = System.Drawing.SystemColors.Window;
             this.txtNamSanXuat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNamSanXuat.Location = new System.Drawing.Point(141, 332);
+            this.txtNamSanXuat.Location = new System.Drawing.Point(141, 512);
             this.txtNamSanXuat.Margin = new System.Windows.Forms.Padding(4);
             this.txtNamSanXuat.Name = "txtNamSanXuat";
-            this.txtNamSanXuat.Size = new System.Drawing.Size(239, 26);
+            this.txtNamSanXuat.Size = new System.Drawing.Size(509, 26);
             this.txtNamSanXuat.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 336);
+            this.label1.Location = new System.Drawing.Point(15, 516);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 20);
@@ -126,16 +115,16 @@
             // 
             this.txtNXB.BackColor = System.Drawing.SystemColors.Window;
             this.txtNXB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNXB.Location = new System.Drawing.Point(141, 290);
+            this.txtNXB.Location = new System.Drawing.Point(141, 470);
             this.txtNXB.Margin = new System.Windows.Forms.Padding(4);
             this.txtNXB.Name = "txtNXB";
-            this.txtNXB.Size = new System.Drawing.Size(239, 26);
+            this.txtNXB.Size = new System.Drawing.Size(509, 26);
             this.txtNXB.TabIndex = 8;
             // 
             // lbNXB
             // 
             this.lbNXB.AutoSize = true;
-            this.lbNXB.Location = new System.Drawing.Point(17, 294);
+            this.lbNXB.Location = new System.Drawing.Point(17, 474);
             this.lbNXB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNXB.Name = "lbNXB";
             this.lbNXB.Size = new System.Drawing.Size(107, 20);
@@ -146,10 +135,12 @@
             // 
             this.txtMoTa.BackColor = System.Drawing.SystemColors.Window;
             this.txtMoTa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMoTa.Location = new System.Drawing.Point(141, 251);
+            this.txtMoTa.Location = new System.Drawing.Point(143, 253);
             this.txtMoTa.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.Size = new System.Drawing.Size(239, 26);
+            this.txtMoTa.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtMoTa.Size = new System.Drawing.Size(509, 197);
             this.txtMoTa.TabIndex = 7;
             // 
             // lbMoTa
@@ -166,16 +157,16 @@
             // 
             this.txtSoLuong.BackColor = System.Drawing.SystemColors.Window;
             this.txtSoLuong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSoLuong.Location = new System.Drawing.Point(141, 214);
+            this.txtSoLuong.Location = new System.Drawing.Point(141, 195);
             this.txtSoLuong.Margin = new System.Windows.Forms.Padding(4);
             this.txtSoLuong.Name = "txtSoLuong";
-            this.txtSoLuong.Size = new System.Drawing.Size(239, 26);
+            this.txtSoLuong.Size = new System.Drawing.Size(509, 26);
             this.txtSoLuong.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 220);
+            this.label5.Location = new System.Drawing.Point(17, 201);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 20);
@@ -186,16 +177,16 @@
             // 
             this.txtGiaBan.BackColor = System.Drawing.SystemColors.Window;
             this.txtGiaBan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGiaBan.Location = new System.Drawing.Point(141, 182);
+            this.txtGiaBan.Location = new System.Drawing.Point(141, 161);
             this.txtGiaBan.Margin = new System.Windows.Forms.Padding(4);
             this.txtGiaBan.Name = "txtGiaBan";
-            this.txtGiaBan.Size = new System.Drawing.Size(239, 26);
+            this.txtGiaBan.Size = new System.Drawing.Size(509, 26);
             this.txtGiaBan.TabIndex = 5;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 188);
+            this.label6.Location = new System.Drawing.Point(17, 165);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 20);
@@ -205,7 +196,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 156);
+            this.label7.Location = new System.Drawing.Point(17, 129);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 20);
@@ -216,7 +207,7 @@
             // 
             this.txtTacGia.BackColor = System.Drawing.SystemColors.Window;
             this.txtTacGia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTacGia.Location = new System.Drawing.Point(141, 110);
+            this.txtTacGia.Location = new System.Drawing.Point(141, 84);
             this.txtTacGia.Margin = new System.Windows.Forms.Padding(4);
             this.txtTacGia.Name = "txtTacGia";
             this.txtTacGia.Size = new System.Drawing.Size(509, 26);
@@ -225,32 +216,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 116);
+            this.label4.Location = new System.Drawing.Point(17, 90);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Tác giả";
-            // 
-            // txtTenSach
-            // 
-            this.txtTenSach.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTenSach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenSach.Location = new System.Drawing.Point(141, 78);
-            this.txtTenSach.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTenSach.Name = "txtTenSach";
-            this.txtTenSach.Size = new System.Drawing.Size(509, 26);
-            this.txtTenSach.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 84);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Tên sách";
             // 
             // txtMaSach
             // 
@@ -272,19 +243,55 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã sách";
             // 
-            // ChiTietSach
+            // pbxSach
+            // 
+            this.pbxSach.Location = new System.Drawing.Point(25, 66);
+            this.pbxSach.Name = "pbxSach";
+            this.pbxSach.Size = new System.Drawing.Size(408, 597);
+            this.pbxSach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxSach.TabIndex = 4;
+            this.pbxSach.TabStop = false;
+            // 
+            // lbTuaSach
+            // 
+            this.lbTuaSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTuaSach.AutoSize = true;
+            this.lbTuaSach.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTuaSach.Location = new System.Drawing.Point(490, 5);
+            this.lbTuaSach.Name = "lbTuaSach";
+            this.lbTuaSach.Size = new System.Drawing.Size(170, 35);
+            this.lbTuaSach.TabIndex = 4;
+            this.lbTuaSach.Text = "TỰA SÁCH";
+            this.lbTuaSach.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbTuaSach);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1146, 43);
+            this.panel1.TabIndex = 5;
+            // 
+            // frmChiTietSach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 448);
+            this.ClientSize = new System.Drawing.Size(1146, 702);
+            this.Controls.Add(this.pbxSach);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ChiTietSach";
-            this.Text = "ChiTietSach";
+            this.Name = "frmChiTietSach";
+            this.Text = "Thông tin chi tiết sách";
             this.Load += new System.EventHandler(this.ChiTietSach_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxSach)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -299,8 +306,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtTacGia;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTenSach;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtMaSach;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNamSanXuat;
@@ -310,6 +315,8 @@
         private System.Windows.Forms.TextBox txtMoTa;
         private System.Windows.Forms.Label lbMoTa;
         private System.Windows.Forms.TextBox txtTheLoai;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbxSach;
+        private System.Windows.Forms.Label lbTuaSach;
+        private System.Windows.Forms.Panel panel1;
     }
 }

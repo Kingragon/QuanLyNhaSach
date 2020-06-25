@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel; //Khai báo using này để liên kết với excel
 using _Excel = Microsoft.Office.Interop.Excel; //Đặt tên khai báo trên là _Excel
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace QuanLyNhaSach
 {
@@ -47,6 +48,13 @@ namespace QuanLyNhaSach
             this.wb = excel.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
         }
 
+        public void DeleteRow(int i)
+        {
+            i = i + 2;
+            ws.Rows[i].Delete();
+            wb.Save();
+        }
+
         public void WriteToCell(int i, int j, string s)
         {
             i++; j++;
@@ -61,6 +69,23 @@ namespace QuanLyNhaSach
         public void SaveAs(string path)
         {
             wb.SaveAs(path);
+        }
+
+        public void SelectWorksheet(int SheetNumber)
+        {
+            this.ws = wb.Worksheets[SheetNumber];
+        }
+
+        public void Delete_Sheet()
+        {
+            wb.Worksheets[1].Delete();
+            //wb.Save();
+        }    
+
+        public void CreateNewSheet()
+        {
+            ws = wb.Worksheets.Add(After: ws);
+            wb.Save();
         }
 
         public void CreateExcel()

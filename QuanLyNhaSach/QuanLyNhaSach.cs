@@ -15,14 +15,12 @@ namespace QuanLyNhaSach
 {
     public partial class frmQuanLyNhaSach : Form
     {
-        System.Data.DataTable dtSach = new System.Data.DataTable();
-        
+        System.Data.DataTable dtSach = new System.Data.DataTable(); //Tạo dtSach
         int index;
 
         public frmQuanLyNhaSach()
         {
             InitializeComponent();
-
         }
 
         //Tạo bảng dữ liệu
@@ -49,7 +47,7 @@ namespace QuanLyNhaSach
             else
             {
                 path = fl.FullName;
-                Excel excel = new Excel(path, 1);
+                Excel excel = new Excel(path, 2);
                 try
                 {
                     dtSach = createTable();
@@ -57,12 +55,30 @@ namespace QuanLyNhaSach
                     int i = 2;
                     while (excel.ReadCell(i, 0) != "")
                     {
-                        dtSach.Rows.Add(excel.ReadCell(i, 0).ToString(), excel.ReadCell(i, 1).ToString(), excel.ReadCell(i, 2).ToString(), excel.ReadCell(i, 3).ToString(),
-                            excel.ReadCell(i, 4).ToString(), excel.ReadCell(i, 5).ToString() + ".000 đồng", excel.ReadCell(i, 6).ToString());
                         i++;
                     }
-
+                    
                     dgvSach.DataSource = dtSach;
+
+                    if (check_delete)
+                    {
+                        int _stt = 0;
+                        for (int j = 0; j < i; j++)
+                        {
+                            _stt = j + 2;
+                            excel.WriteToCell(_stt, 0, (_stt - 1).ToString());
+                        }
+                        _stt = i;
+                        excel.WriteToCell(_stt, 0, "");
+                        check_delete = false;
+                        excel.Save();
+                    }
+
+                    for(int dem = 2; dem < i; dem++)
+                    {
+                        dtSach.Rows.Add(excel.ReadCell(dem, 0).ToString(), excel.ReadCell(dem, 1).ToString(), excel.ReadCell(dem, 2).ToString(), excel.ReadCell(dem, 3).ToString(),
+                            excel.ReadCell(dem, 4).ToString(), excel.ReadCell(dem, 7).ToString() + ".000 đồng", excel.ReadCell(dem, 6).ToString());
+                    }
 
                     excel.Close();
                 }
@@ -74,11 +90,6 @@ namespace QuanLyNhaSach
             }
         }
 
-        public System.Data.DataTable GanData()
-        {
-            return (System.Data.DataTable)dgvSach.DataSource;
-        }
-
         // Row <=> Thông tin chi tiết sách
         private void dgvSach_SelectionChanged(object sender, EventArgs e)
         {
@@ -87,44 +98,82 @@ namespace QuanLyNhaSach
             System.Data.DataTable dt = (System.Data.DataTable)dgvSach.DataSource;
             if (dt.Rows.Count > 0)
             {
-                txtMaSach.Text = dgvSach.Rows[index].Cells[1].Value.ToString();
-                txtTenSach.Text = dgvSach.Rows[index].Cells[2].Value.ToString();
-                txtTacGia.Text = dgvSach.Rows[index].Cells[3].Value.ToString();
-                cbTheLoai.Text = dgvSach.Rows[index].Cells[4].Value.ToString();
-                txtGiaBan.Text = dgvSach.Rows[index].Cells[5].Value.ToString();
-                txtSoLuong.Text = dgvSach.Rows[index].Cells[6].Value.ToString(); //Số lượng tồn
+                string s = "AlbumSach\\" + dgvSach.Rows[index].Cells[1].Value.ToString() + ".jpg";
+                FileInfo fl = new FileInfo(s);
+                if (!fl.Exists)
+                    MessageBox.Show("File không tồn tại!");
+                else
+                {
+                    pbxSach.ImageLocation = fl.FullName;
+                    pbxSach.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
             }
+        }
+
+        private void pbxSach_Click(object sender, EventArgs e)
+        {
+            frmChiTietSach f = new frmChiTietSach();
+            f.path = path;
+            f.i = index + 1;
+            f.ShowDialog();
         }
 
         //Click Thêm -> mở form mới
         private void btnThem_Click(object sender, EventArgs e)
         {
             frmThemSach f = new frmThemSach();
-            f.Show();
+            f.ShowDialog();
+            frmQuanLyDauSach_Load(sender, e);
         }
 
         //Click Chỉnh sửa -> mở form mới
         private void btnChinhSua_Click(object sender, EventArgs e)
         {
             frmChinhSuaSach f = new frmChinhSuaSach();
-            f.Show();
+            index = dgvSach.CurrentCell.RowIndex;
+            index = index + 2;
+            FileInfo fl = new FileInfo("sach.xlsx");
+            path = fl.FullName;
+            Excel excel = new Excel(path, 2);
+            System.Data.DataTable dt = (System.Data.DataTable)dgvSach.DataSource;
+            if (dt.Rows.Count > 0)
+            {
+                f.MS = excel.ReadCell(index, 1).ToString();
+                f.TS = excel.ReadCell(index, 2).ToString();
+                f.TG = excel.ReadCell(index, 3).ToString();
+                f.TL = excel.ReadCell(index, 4).ToString();
+                f.NXB = excel.ReadCell(index, 5).ToString();
+                f.NSX = excel.ReadCell(index, 6).ToString();
+                f.GB = excel.ReadCell(index, 7).ToString();
+                f.SL = excel.ReadCell(index, 8).ToString();
+                f.MT = excel.ReadCell(index, 9).ToString();
+            }
+            f.STT = index;
+            excel.Close();
+            f.ShowDialog();
+            frmQuanLyDauSach_Load(sender, e);
         }
 
         //Chọn thông tin -> Click Xóa (1 hàng)
         //Vấn đề: chọn nhiều hàng xóa cùng lúc (not complete)
+
+        bool check_delete = false;
         private void btnXoa_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Cảnh báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if(result == DialogResult.Yes)
             {
-                dtSach.Rows.RemoveAt(index);
-                dgvSach.DataSource = dtSach;
-                dgvSach.RefreshEdit();
+                FileInfo fl = new FileInfo("sach.xlsx");
+                Excel excel = new Excel(fl.FullName, 2);
+                index = dgvSach.CurrentCell.RowIndex;
+                excel.DeleteRow(index + 1);
+                excel.Close();
+                check_delete = true;
+                frmQuanLyDauSach_Load(sender, e);
             }   
         }
 
-        //Click Tìm (Ngân - not complete)
         private void btnTim_Click(object sender, EventArgs e)
         {
             if (cbTimKiem.Text == "Thể loại")
@@ -135,7 +184,7 @@ namespace QuanLyNhaSach
             
             //DataTable dt = createTable();
             string theloai = cbTimKiem.SelectedItem.ToString();
-            Excel excel = new Excel(path, 1);
+            Excel excel = new Excel(path, 2);
             dtSach = createTable();
 
             int TongSoSach = 0, i = 1, STT = 1;
@@ -154,14 +203,15 @@ namespace QuanLyNhaSach
             STT = 1;
             dgvSach.DataSource = dtSach;
             excel.Close();
-        }       
+        }
 
         //Click Tìm kiếm nâng cao (not complete)
+        public int tmp1;
         private void btnTimKiemNangCao_Click(object sender, EventArgs e)
         {
             frmTimKiemNangCao f = new frmTimKiemNangCao();
             f.path = path;
-            f.Show();
+            f.ShowDialog();
         }
 
         private void hóaĐơnBánSáchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -184,10 +234,10 @@ namespace QuanLyNhaSach
             f.Show();
         }
  
-        //not complete
         private void thayĐổiQuyĐịnhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmQuyDinh f = new frmQuyDinh();
+            f.Show();
         }
 
         //not complete
@@ -196,11 +246,7 @@ namespace QuanLyNhaSach
 
         }
 
-        private void frmQuanLyNhaSach_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //MessageBox.Show("HIHI");
-        }
-
+        // ?
         private void refToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmQuanLyDauSach_Load(sender, e);
@@ -210,10 +256,17 @@ namespace QuanLyNhaSach
 
         private void thôngTinChiTiếtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChiTietSach f = new ChiTietSach();
+            frmChiTietSach f = new frmChiTietSach();
             f.path = path;
             f.i = index + 1;
             f.ShowDialog();
         }
+
+        private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThongTin f = new frmThongTin();
+            f.Show();
+        }
+
     }
 }

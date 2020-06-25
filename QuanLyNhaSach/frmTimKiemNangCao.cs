@@ -18,6 +18,7 @@ namespace QuanLyNhaSach
         }
 
         public string path;
+        public int index, tmp1 = 0;
 
         private void btnTim_Click(object sender, EventArgs e)
         {
@@ -40,7 +41,7 @@ namespace QuanLyNhaSach
                 if (cbTheLoai.Text != "" && cbTheLoai.Text != "Thể loại")
                     tong++;
 
-                int tmp = 0, tmp1 = 0;
+                int tmp = 0;
                 if (tong != 0)
                 {
                     while (excel.ReadCell(i, 0) != "")
@@ -62,11 +63,11 @@ namespace QuanLyNhaSach
                                 tmp++;
 
                         if (txtNhaXuatBan.Text != "")
-                            if (txtNhaXuatBan.Text == excel.ReadCell(i, 7).ToString())
+                            if (txtNhaXuatBan.Text == excel.ReadCell(i, 6).ToString())
                                 tmp++;
 
                         if (txtNamSX.Text != "")
-                            if (txtNamSX.Text == excel.ReadCell(i, 8).ToString())
+                            if (txtNamSX.Text == excel.ReadCell(i, 5).ToString())
                                 tmp++;
 
                         if (tmp == tong)
@@ -77,7 +78,9 @@ namespace QuanLyNhaSach
                 else MessageBox.Show("Không có cuốn sách cần tìm");
 
                 if (tmp1 != 0)
+                {
                     MessageBox.Show("Có " + tmp1 + " cuốn sách cần tìm");
+                }
                 else
                     MessageBox.Show("Không có cuốn sách cần tìm");
                 cbTheLoai.Text = "Thể loại";
@@ -89,6 +92,7 @@ namespace QuanLyNhaSach
 
         private void txtMaSach_Leave(object sender, EventArgs e)
         {
+            /*
             if (txtMaSach.Text[0].ToString() == "V" && txtMaSach.Text[1].ToString() == "H")
                 cbTheLoai.Text = cbTheLoai.Items[7].ToString();
             else
@@ -100,6 +104,7 @@ namespace QuanLyNhaSach
             else
                 if (txtMaSach.Text[0].ToString() == "T" && txtMaSach.Text[1].ToString() == "S")
                 cbTheLoai.Text = cbTheLoai.Items[6].ToString();
+            */
         }
 
         private void cbTheLoai_Leave(object sender, EventArgs e)

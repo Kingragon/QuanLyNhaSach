@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnThoat = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtSDT = new System.Windows.Forms.TextBox();
-            this.btnCapNhat = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
@@ -41,6 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtMaKH = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.btnCapNhat = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +58,7 @@
             this.groupBox1.Controls.Add(this.txtMaKH);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(35, 105);
+            this.groupBox1.Location = new System.Drawing.Point(35, 82);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
@@ -66,17 +66,6 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin khách hàng";
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Location = new System.Drawing.Point(388, 427);
-            this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(121, 34);
-            this.btnThoat.TabIndex = 22;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // txtEmail
             // 
@@ -87,6 +76,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(491, 26);
             this.txtEmail.TabIndex = 12;
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // txtSDT
             // 
@@ -94,20 +84,12 @@
             this.txtSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSDT.Location = new System.Drawing.Point(121, 230);
             this.txtSDT.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSDT.MaxLength = 10;
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(491, 26);
             this.txtSDT.TabIndex = 9;
-            // 
-            // btnCapNhat
-            // 
-            this.btnCapNhat.Location = new System.Drawing.Point(181, 427);
-            this.btnCapNhat.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(121, 34);
-            this.btnCapNhat.TabIndex = 21;
-            this.btnCapNhat.Text = "Cập nhật";
-            this.btnCapNhat.UseVisualStyleBackColor = true;
-            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
+            this.txtSDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSDT_KeyPress);
+            this.txtSDT.Leave += new System.EventHandler(this.txtSDT_Leave);
             // 
             // label6
             // 
@@ -158,6 +140,7 @@
             this.txtHoTenKH.Name = "txtHoTenKH";
             this.txtHoTenKH.Size = new System.Drawing.Size(491, 26);
             this.txtHoTenKH.TabIndex = 3;
+            this.txtHoTenKH.Leave += new System.EventHandler(this.txtHoTenKH_Leave);
             // 
             // label3
             // 
@@ -178,6 +161,7 @@
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.Size = new System.Drawing.Size(491, 26);
             this.txtMaKH.TabIndex = 1;
+            this.txtMaKH.Leave += new System.EventHandler(this.txtMaKH_Leave);
             // 
             // label2
             // 
@@ -189,11 +173,33 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã KH:";
             // 
+            // btnThoat
+            // 
+            this.btnThoat.Location = new System.Drawing.Point(388, 404);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(121, 34);
+            this.btnThoat.TabIndex = 22;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // btnCapNhat
+            // 
+            this.btnCapNhat.Location = new System.Drawing.Point(181, 404);
+            this.btnCapNhat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCapNhat.Name = "btnCapNhat";
+            this.btnCapNhat.Size = new System.Drawing.Size(121, 34);
+            this.btnCapNhat.TabIndex = 21;
+            this.btnCapNhat.Text = "Cập nhật";
+            this.btnCapNhat.UseVisualStyleBackColor = true;
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(206, 49);
+            this.label1.Location = new System.Drawing.Point(206, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(302, 32);
             this.label1.TabIndex = 23;
@@ -201,9 +207,10 @@
             // 
             // frmThemKH
             // 
+            this.AcceptButton = this.btnCapNhat;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 558);
+            this.ClientSize = new System.Drawing.Size(710, 476);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);

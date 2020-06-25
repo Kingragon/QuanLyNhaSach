@@ -47,6 +47,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Syncfusion.Compression.Base, Version=18.1450.0.57, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.18.1.0.57\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=18.1450.0.57, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.18.1.0.57\lib\net45\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=18.1450.0.57, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.WinForms.18.1.0.57\lib\net45\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -60,11 +69,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChiTietSach.cs">
+    <Compile Include="frmChiTietSach.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChiTietSach.Designer.cs">
-      <DependentUpon>ChiTietSach.cs</DependentUpon>
+    <Compile Include="frmChiTietSach.Designer.cs">
+      <DependentUpon>frmChiTietSach.cs</DependentUpon>
     </Compile>
     <Compile Include="Excel.cs" />
     <Compile Include="frmChinhSuaKH.cs">
@@ -79,11 +88,23 @@
     <Compile Include="frmChinhSuaSach.Designer.cs">
       <DependentUpon>frmChinhSuaSach.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangNhap.Designer.cs">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmKhachHang.Designer.cs">
       <DependentUpon>frmKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuyDinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuyDinh.Designer.cs">
+      <DependentUpon>frmQuyDinh.cs</DependentUpon>
     </Compile>
     <Compile Include="frmThemKH.cs">
       <SubType>Form</SubType>
@@ -96,6 +117,12 @@
     </Compile>
     <Compile Include="frmThemSach.Designer.cs">
       <DependentUpon>frmThemSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThongTin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThongTin.Designer.cs">
+      <DependentUpon>frmThongTin.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTimKiemNangCao.cs">
       <SubType>Form</SubType>
@@ -123,8 +150,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChiTietSach.resx">
-      <DependentUpon>ChiTietSach.cs</DependentUpon>
+    <EmbeddedResource Include="frmChiTietSach.resx">
+      <DependentUpon>frmChiTietSach.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmChinhSuaKH.resx">
       <DependentUpon>frmChinhSuaKH.cs</DependentUpon>
@@ -132,14 +159,23 @@
     <EmbeddedResource Include="frmChinhSuaSach.resx">
       <DependentUpon>frmChinhSuaSach.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDangNhap.resx">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKhachHang.resx">
       <DependentUpon>frmKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuyDinh.resx">
+      <DependentUpon>frmQuyDinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemKH.resx">
       <DependentUpon>frmThemKH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemSach.resx">
       <DependentUpon>frmThemSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThongTin.resx">
+      <DependentUpon>frmThongTin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTimKiemNangCao.resx">
       <DependentUpon>frmTimKiemNangCao.cs</DependentUpon>
@@ -162,6 +198,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

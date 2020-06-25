@@ -20,85 +20,7 @@ namespace QuanLyNhaSach
             InitializeComponent();
         }
 
-        System.Data.DataTable dtSach = new System.Data.DataTable();
-
-        public void RefreshInfor()
-        {
-            txtMaKH.Text = "";
-            txtSDT.Text = "";
-            txtEmail.Text = "";
-            txtDiaChi.Text = "";
-            txtHoTenKH.Text = "";
-        }
-
-        public string DeleteSpace(string txt)
-        {
-            if (txt[0] == ' ')
-            {
-                for (int i = txt.Length - 1; i >= 0; i--)
-                    if (txt[i] == ' ' && txt[i + 1] == ' ')
-                        txt = txt.Remove(i + 1, 1);
-            }
-            else
-            {
-                for (int i = txt.Length - 1; i >= 1; i--)
-                    if (txt[i] == ' ' && txt[i + 1] == ' ')
-                        txt = txt.Remove(i + 1, 1);
-            }
-            if (txt[0] == ' ') txt = txt.Remove(0, 1);
-            return txt;
-        }
-
-        public bool CheckWord(string txt)
-        {
-            //chu nhap vao la lower
-            txt = txt.ToLower();
-
-            //kiem tra co thuoc bang chu cai hay khong
-            int bienthu = 1;
-            for (int i = 0; i < txt.Length; i++)
-            {
-                for (char j = 'a'; j <= 'z'; j++)
-                {
-                    bienthu = 1;
-                    if (txt[i] == j || txt[i] == ' ')
-                    {
-                        bienthu = 0;
-                        break;
-                    }
-                }
-            }
-            if (bienthu == 0)
-                return true;
-            else return false;
-        }
-
-        public string Upper(string txt)
-        {
-            string kq; //ket qua 
-            //chu nhap vao la lower
-            txt = txt.ToLower();
-
-            //kiem tra co thuoc bang chu cai hay khong
-            if (CheckWord(txt))
-            {
-                kq = char.ToUpper(txt[0]).ToString();
-                for (int i = 1; i < txt.Length; i++)
-                {
-                    if (txt[i] == ' ')
-                        kq += char.ToUpper(txt[i + 1]).ToString();
-                    else
-                        if (txt[i] != ' ' && txt[i - 1] != ' ')
-                        kq += txt[i].ToString();
-                    if (i < txt.Length - 1)
-                        if (txt[i] != ' ' && txt[i + 1] == ' ')
-                            kq += " ";
-                }
-                return kq;
-            }
-            else return txt = "";
-        }
-
+        public System.Data.DataTable dtSach = new System.Data.DataTable();
         public System.Data.DataTable createTable()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -111,81 +33,18 @@ namespace QuanLyNhaSach
             return dt;
         }
 
-        Excel excel = new Excel();
-        public void KhoiTao(string path)
-        {
-            excel = new Excel(@path, 1);
-            for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                excel.WriteToCell(0, j, dataGridView1.Columns[j].HeaderText);
-            excel.Close();
-        }
-
-        int Stt = 1;
+        public int stt;
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string STTs;
-            FileInfo fl = new FileInfo("sach.xlsx");
-            if (!fl.Exists)
-                MessageBox.Show("File không tồn tại!");
-            else
-            {
-                excel = new Excel(@fl.FullName, 3);
-                int stt = 1;
-                while (excel.ReadCell(stt, 0) != "")
-                {
-                    if (excel.ReadCell(stt + 1, 0) == "")
-                    {
-                        STTs = excel.ReadCell(stt, 0);
-                        Stt = int.Parse(STTs);
-                        Stt++;
-                        break;
-                    }
-                    else stt++;
-                }
-            }
-
-            //ghi vao excel
-            excel.WriteToCell(Stt, 1, txtMaKH.Text.ToString());
-            excel.WriteToCell(Stt, 2, txtHoTenKH.Text.ToString());
-            excel.WriteToCell(Stt, 3, txtDiaChi.Text.ToString());
-            excel.WriteToCell(Stt, 4, txtEmail.Text.ToString());
-            excel.WriteToCell(Stt, 5, "'" + txtSDT.Text.ToString());
-            excel.WriteToCell(Stt, 0, Stt.ToString());
-            Stt++;
-
-            //ghi vao grid view
-            dtSach = createTable();
-
-            int i = 1;
-            while (excel.ReadCell(i, 0) != "")
-            {
-                dtSach.Rows.Add(i.ToString(), excel.ReadCell(i, 1).ToString(), excel.ReadCell(i, 2).ToString(), excel.ReadCell(i, 3).ToString(),
-                    excel.ReadCell(i, 4).ToString(), excel.ReadCell(i, 5).ToString());
-                i++;
-            }
-            dataGridView1.DataSource = dtSach;
-
-            RefreshInfor();
-            excel.Save();
-            excel.Close();
+            frmThemKH themKH = new frmThemKH();
+            themKH.ShowDialog();
+            frmKhachHang_Load(sender, e);
         }
 
-        private void txtMaKH_Leave(object sender, EventArgs e)
-        {
-            if (txtMaKH.Text != "")
-                txtMaKH.Text = DeleteSpace(txtMaKH.Text.ToString());
-        }
-
-        private void txtHoTenKH_Leave(object sender, EventArgs e)
-        {
-            if (txtHoTenKH.Text != "")
-                txtHoTenKH.Text = Upper(txtHoTenKH.Text.ToString());
-            if (txtHoTenKH.Text == "")
-                MessageBox.Show("Họ và tên không hợp lệ");
-        }
-
+        bool check_delete = false;
         private void frmKhachHang_Load(object sender, EventArgs e)
         {
+            Excel excel = new Excel();
             FileInfo fl = new FileInfo("sach.xlsx");
             if (!fl.Exists)
                 MessageBox.Show("File không tồn tại!");
@@ -194,57 +53,121 @@ namespace QuanLyNhaSach
                 excel = new Excel(@fl.FullName, 3);
                 dtSach = createTable();
 
-                int i = 1;
+                int i = 1, TongKH = 0;
                 while (excel.ReadCell(i, 0) != "")
                 {
                     dtSach.Rows.Add(i.ToString(), excel.ReadCell(i, 1).ToString(), excel.ReadCell(i, 2).ToString(), excel.ReadCell(i, 3).ToString(),
                         excel.ReadCell(i, 4).ToString(), excel.ReadCell(i, 5).ToString());
+                    TongKH++;
                     i++;
                 }
-                dataGridView1.DataSource = dtSach;
+
+                if (check_delete)
+                {
+                    int _stt = 0;
+                    for (int j = 0; j < i; j++)
+                    {
+                        _stt = j + 1;
+                        excel.WriteToCell(_stt, 0, _stt.ToString());
+                    }
+                    _stt = i;
+                    excel.WriteToCell(_stt, 0, "");
+                    check_delete = false;
+                    excel.Save();
+                }
+
+                dgvKhachHang.DataSource = dtSach;
+                gbxKhachHang.Text = "Số lượng khách hàng (" + TongKH.ToString() + ")";
+                cbTimKiem.Items.Clear();
+                int stt = 2;
+                while (excel.ReadCell(stt, 1) != "")
+                {
+                    cbTimKiem.Items.Add(excel.ReadCell(stt, 1).ToString());
+                    stt++;
+                }
+
                 excel.Close();
             }
         }
 
-        private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
+        int index;
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (txtSDT.Text.Length > 9)
+            index = dgvKhachHang.CurrentCell.RowIndex;
+            System.Data.DataTable dt = (System.Data.DataTable)dgvKhachHang.DataSource;
+            if (dt.Rows.Count > 0)
             {
-                txtSDT.ReadOnly = true;
-                MessageBox.Show("Số điện thoại chỉ có 10 số thôi, bớt nhập xàm lại nha!");
+                txtMaKH.Text = dgvKhachHang.Rows[index].Cells[1].Value.ToString();
+                txtHoTenKH.Text = dgvKhachHang.Rows[index].Cells[2].Value.ToString();
+                txtDiaChi.Text = dgvKhachHang.Rows[index].Cells[3].Value.ToString();
+                txtEmail.Text = dgvKhachHang.Rows[index].Cells[4].Value.ToString();
+                txtSDT.Text = dgvKhachHang.Rows[index].Cells[5].Value.ToString();
+
             }
         }
 
-        private void txtSDT_Enter(object sender, EventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
         {
-            txtSDT.Text = "";
+            FileInfo fl = new FileInfo("sach.xlsx");
+            Excel excel = new Excel(fl.FullName, 3);
+            index = dgvKhachHang.CurrentCell.RowIndex;
+            excel.DeleteRow(index);
+            excel.Close();
+            check_delete = true;
+            frmKhachHang_Load(sender, e);
         }
 
-        private void txtSDT_TextChanged(object sender, EventArgs e)
+        private void btnChinhSua_Click(object sender, EventArgs e)
         {
-            txtSDT.Text = "";
+            frmChinhSuaKH chinhSuaKH = new frmChinhSuaKH();
+            index = dgvKhachHang.CurrentCell.RowIndex;
+            System.Data.DataTable dt = (System.Data.DataTable)dgvKhachHang.DataSource;
+            if (dt.Rows.Count > 0)
+            {
+                chinhSuaKH.MKH = dgvKhachHang.Rows[index].Cells[1].Value.ToString();
+                chinhSuaKH.HTKH = dgvKhachHang.Rows[index].Cells[2].Value.ToString();
+                chinhSuaKH.DICH = dgvKhachHang.Rows[index].Cells[3].Value.ToString();
+                chinhSuaKH.SDT = dgvKhachHang.Rows[index].Cells[4].Value.ToString();
+                chinhSuaKH.EM = dgvKhachHang.Rows[index].Cells[5].Value.ToString();
+            }
+            chinhSuaKH.STT = index;
+            chinhSuaKH.ShowDialog();
+            frmKhachHang_Load(sender, e);
         }
 
-        public bool Check_mail(string txt)
+        private void btnTim_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < txt.Length; i++)
-                if (txt[i] != '@')
+            if (cbTimKiem.Text == "Mã KH")
+            {
+                MessageBox.Show("Bạn chưa chọn mã khách hàng để tìm kiếm!");
+                return;
+            }
+
+            //DataTable dt = createTable();
+            string theloai = cbTimKiem.SelectedItem.ToString();
+            FileInfo fl = new FileInfo("sach.xlsx");
+            Excel excel = new Excel(fl.FullName, 3);
+            dtSach = createTable();
+
+            int i = 2, STT = 1;
+            while (excel.ReadCell(i, 1) != "")
+            {
+                if (theloai == excel.ReadCell(i, 1))
                 {
-                    return false;
+                    dtSach.Rows.Add(STT++.ToString(), excel.ReadCell(i, 1).ToString(), excel.ReadCell(i, 2).ToString(), excel.ReadCell(i, 3).ToString(),
+                    excel.ReadCell(i, 4).ToString(), excel.ReadCell(i, 5).ToString());
                 }
-                    return true;
+                i++;
+            }
+            gbxKhachHang.Text = "Số lượng khách hàng (" + 1.ToString() + ")";
+            STT = 1;
+            dgvKhachHang.DataSource = dtSach;
+            excel.Close();
         }
 
-        private void txtEmail_Leave(object sender, EventArgs e)
+        private void refesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(Check_mail(txtEmail.Text))
-            {
-                MessageBox.Show("Email không hợp lệ!");
-            }
-
-            string tmp = "gmail.com";
-            if (tmp.Contains(txtEmail.Text.ToString()))
-                MessageBox.Show("Email không hợp lệ!");
+            frmKhachHang_Load(sender, e);
         }
     }
 }

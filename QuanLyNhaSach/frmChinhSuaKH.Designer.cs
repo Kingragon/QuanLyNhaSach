@@ -58,11 +58,11 @@
             this.groupBox1.Controls.Add(this.txtMaKH);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(76, 90);
+            this.groupBox1.Location = new System.Drawing.Point(46, 87);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(649, 270);
+            this.groupBox1.Size = new System.Drawing.Size(649, 246);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin khách hàng";
@@ -76,6 +76,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(491, 26);
             this.txtEmail.TabIndex = 12;
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // txtSDT
             // 
@@ -86,6 +87,8 @@
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(491, 26);
             this.txtSDT.TabIndex = 9;
+            this.txtSDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSDT_KeyPress);
+            this.txtSDT.Leave += new System.EventHandler(this.txtSDT_Leave);
             // 
             // label6
             // 
@@ -151,6 +154,7 @@
             // 
             this.txtMaKH.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaKH.Enabled = false;
             this.txtMaKH.Location = new System.Drawing.Point(121, 46);
             this.txtMaKH.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaKH.Name = "txtMaKH";
@@ -171,7 +175,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(200, 34);
+            this.label1.Location = new System.Drawing.Point(170, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(380, 32);
             this.label1.TabIndex = 4;
@@ -179,7 +183,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(427, 368);
+            this.btnThoat.Location = new System.Drawing.Point(398, 354);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(121, 34);
@@ -190,7 +194,7 @@
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(220, 368);
+            this.btnCapNhat.Location = new System.Drawing.Point(191, 354);
             this.btnCapNhat.Margin = new System.Windows.Forms.Padding(4);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(121, 34);
@@ -201,15 +205,17 @@
             // 
             // frmChinhSuaKH
             // 
+            this.AcceptButton = this.btnCapNhat;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(742, 428);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmChinhSuaKH";
             this.Text = "frmChinhSuaKH";
+            this.Load += new System.EventHandler(this.frmChinhSuaKH_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

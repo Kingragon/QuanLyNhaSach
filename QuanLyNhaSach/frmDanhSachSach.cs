@@ -32,30 +32,36 @@ namespace QuanLyNhaSach
             dt.Columns.Add("MoTa");
             dt.Columns.Add("TheLoai");
             dt.Columns.Add("GiaBan");
-            dt.Columns.Add("SoLuong");
-            
-            
-            
+            dt.Columns.Add("SoLuong");            
             return dt;
         }
 
         public string path;
         private void frmDanhSachSach_Load(object sender, EventArgs e)
         {
+            dgvDanhSachSach.AutoSize = true;
             Excel excel = new Excel(path, 2);
             dtSach = createTable();
             int i = 2;
             while (excel.ReadCell(i, 0) != "")
             {
                 dtSach.Rows.Add(excel.ReadCell(i, 0).ToString(), excel.ReadCell(i, 1).ToString(), excel.ReadCell(i, 2).ToString(),
-                    excel.ReadCell(i, 3).ToString(), excel.ReadCell(i, 4).ToString(), excel.ReadCell(i, 5).ToString(), excel.ReadCell(i, 6).ToString(),
-                    excel.ReadCell(i, 7).ToString(), excel.ReadCell(i, 8).ToString(), excel.ReadCell(i, 9).ToString());
+                    excel.ReadCell(i, 3).ToString(), excel.ReadCell(i, 5).ToString(), excel.ReadCell(i, 6).ToString(), excel.ReadCell(i, 9).ToString(),
+                    excel.ReadCell(i, 4).ToString(), excel.ReadCell(i, 7).ToString(), excel.ReadCell(i, 8).ToString());
+              
                 i++;
             }
 
             dgvDanhSachSach.DataSource = dtSach;
+
+            dgvDanhSachSach.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             excel.Close();
             //dgvSach.RefreshEdit();
+        }
+
+        private void dgvDanhSachSach_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         // Row <=> Thông tin chi tiết sách

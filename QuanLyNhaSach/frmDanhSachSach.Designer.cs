@@ -55,6 +55,8 @@
             // 
             // dgvDanhSachSach
             // 
+            this.dgvDanhSachSach.AllowUserToAddRows = false;
+            this.dgvDanhSachSach.AllowUserToDeleteRows = false;
             this.dgvDanhSachSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSachSach.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
@@ -70,10 +72,12 @@
             this.dgvDanhSachSach.Location = new System.Drawing.Point(3, 56);
             this.dgvDanhSachSach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvDanhSachSach.Name = "dgvDanhSachSach";
+            this.dgvDanhSachSach.ReadOnly = true;
             this.dgvDanhSachSach.RowHeadersWidth = 51;
             this.dgvDanhSachSach.RowTemplate.Height = 24;
             this.dgvDanhSachSach.Size = new System.Drawing.Size(1249, 575);
             this.dgvDanhSachSach.TabIndex = 1;
+            this.dgvDanhSachSach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSachSach_CellContentClick);
             // 
             // STT
             // 
@@ -81,6 +85,7 @@
             this.STT.HeaderText = "STT";
             this.STT.MinimumWidth = 6;
             this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
             this.STT.Width = 50;
             // 
             // colMaSach
@@ -89,6 +94,7 @@
             this.colMaSach.HeaderText = "Mã Sách";
             this.colMaSach.MinimumWidth = 6;
             this.colMaSach.Name = "colMaSach";
+            this.colMaSach.ReadOnly = true;
             this.colMaSach.Width = 125;
             // 
             // colTenSach
@@ -97,6 +103,7 @@
             this.colTenSach.HeaderText = "Tên Sách";
             this.colTenSach.MinimumWidth = 6;
             this.colTenSach.Name = "colTenSach";
+            this.colTenSach.ReadOnly = true;
             this.colTenSach.Width = 125;
             // 
             // colTacGia
@@ -105,6 +112,7 @@
             this.colTacGia.HeaderText = "Tác Giả";
             this.colTacGia.MinimumWidth = 6;
             this.colTacGia.Name = "colTacGia";
+            this.colTacGia.ReadOnly = true;
             this.colTacGia.Width = 125;
             // 
             // colNXS
@@ -113,6 +121,7 @@
             this.colNXS.HeaderText = "Năm sản xuất";
             this.colNXS.MinimumWidth = 6;
             this.colNXS.Name = "colNXS";
+            this.colNXS.ReadOnly = true;
             this.colNXS.Width = 125;
             // 
             // colNXB
@@ -121,6 +130,7 @@
             this.colNXB.HeaderText = "Nhà xuất bản";
             this.colNXB.MinimumWidth = 6;
             this.colNXB.Name = "colNXB";
+            this.colNXB.ReadOnly = true;
             this.colNXB.Width = 125;
             // 
             // colMoTa
@@ -129,6 +139,7 @@
             this.colMoTa.HeaderText = "Mô tả";
             this.colMoTa.MinimumWidth = 6;
             this.colMoTa.Name = "colMoTa";
+            this.colMoTa.ReadOnly = true;
             this.colMoTa.Width = 300;
             // 
             // colTheLoai
@@ -137,6 +148,7 @@
             this.colTheLoai.HeaderText = "Thể Loại";
             this.colTheLoai.MinimumWidth = 6;
             this.colTheLoai.Name = "colTheLoai";
+            this.colTheLoai.ReadOnly = true;
             this.colTheLoai.Width = 125;
             // 
             // colGiaBan
@@ -145,6 +157,7 @@
             this.colGiaBan.HeaderText = "Giá Bán";
             this.colGiaBan.MinimumWidth = 6;
             this.colGiaBan.Name = "colGiaBan";
+            this.colGiaBan.ReadOnly = true;
             this.colGiaBan.Width = 125;
             // 
             // colSoLuong
@@ -153,6 +166,7 @@
             this.colSoLuong.HeaderText = "Số Lượng";
             this.colSoLuong.MinimumWidth = 6;
             this.colSoLuong.Name = "colSoLuong";
+            this.colSoLuong.ReadOnly = true;
             this.colSoLuong.Width = 125;
             // 
             // frmDanhSachSach

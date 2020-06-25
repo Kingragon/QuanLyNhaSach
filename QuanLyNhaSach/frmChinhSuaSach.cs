@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuanLyNhaSach;
+using System.IO;
 
 namespace QuanLyNhaSach
 {
@@ -17,6 +17,23 @@ namespace QuanLyNhaSach
         {
             InitializeComponent();
         }
+
+        public string MS, TS, TG, TL, NSX, NXB, MT, GB, SL;
+
+        private void frmChinhSuaSach_Load(object sender, EventArgs e)
+        {
+            txtMaSach.Text = MS;
+            txtTenSach.Text = TS;
+            txtTacGia.Text = TG;
+            cbTheLoai.Text = TL;
+            txtNSX.Text = NSX;
+            txtNamSX.Text = NXB;
+            txtMoTa.Text = MT;
+            txtGiaBan.Text = GB;
+            txtSoLuongTon.Text = SL;
+        }
+
+        public int STT;
 
         public bool CheckData()
         {
@@ -72,14 +89,6 @@ namespace QuanLyNhaSach
             return check;
         }
 
-        /// <summary>
-        /// Ngân - hàm này thích thì cứ xóa
-        /// </summary>
-        public void Hien()
-        {
-            frmQuanLyNhaSach.Equals(txtMaSach.Text, txtGiaBan.Text).ToString();
-        }
-
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             if (CheckData())
@@ -87,7 +96,21 @@ namespace QuanLyNhaSach
                 DialogResult result = MessageBox.Show("Bạn có muốn cập nhật không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
-                    //cập nhật data (not compelete)
+                    FileInfo fl = new FileInfo("sach.xlsx");
+                    Excel excel = new Excel(fl.FullName, 3);
+                    excel.WriteToCell(STT + 1, 1, txtMaSach.Text.ToString());
+                    excel.WriteToCell(STT + 1, 2, txtTenSach.Text.ToString());
+                    excel.WriteToCell(STT + 1, 3, txtTacGia.Text.ToString());
+                    excel.WriteToCell(STT + 1, 4, cbTheLoai.Text.ToString());
+                    excel.WriteToCell(STT + 1, 5, txtNSX.Text.ToString());
+                    excel.WriteToCell(STT + 1, 6, txtNamSX.Text.ToString());
+                    excel.WriteToCell(STT + 1, 7, txtMoTa.Text.ToString());
+                    excel.WriteToCell(STT + 1, 8, txtGiaBan.Text.ToString());
+                    excel.WriteToCell(STT + 1, 9, txtSoLuongTon.Text.ToString());
+                    excel.WriteToCell(STT + 1, 0, STT.ToString());
+                    excel.Save();
+                    excel.Close();
+                    Close();
 
                 }
             }
@@ -99,7 +122,7 @@ namespace QuanLyNhaSach
 
             if (result == DialogResult.Yes)
             {
-                //cập nhật data (not compelete)
+                btnCapNhat_Click(sender, e);
                 Close();
             }
             else if(result == DialogResult.No)
